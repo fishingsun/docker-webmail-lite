@@ -1,6 +1,8 @@
 afterlogic/docker-webmail-lite
 ==============================
 
+**The volumes should be defined before using the folders in `Dockerfile`. That's why I forked the repo.**
+
 Out-of-the-box [Afterlogic WebMail Lite](https://afterlogic.org/webmail-lite) image
 
 Includes Apache, MySQL and PHP setup based on [fauria/docker-lamp package](https://github.com/fauria/docker-lamp). Contains improvements [offered for Aurora Files](https://github.com/extbe)

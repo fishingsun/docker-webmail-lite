@@ -3,6 +3,14 @@ MAINTAINER AfterLogic Support <support@afterlogic.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 
+ENV LOG_STDOUT **Boolean**
+ENV LOG_STDERR **Boolean**
+ENV LOG_LEVEL warn
+ENV ALLOW_OVERRIDE All
+ENV DATE_TIMEZONE UTC
+
+VOLUME ["/var/www/html", "/var/log/httpd", "/var/lib/mysql", "/var/log/mysql", "/etc/apache2"]
+
 RUN apt-get update
 RUN apt-get upgrade -y
 
@@ -25,14 +33,9 @@ RUN apt-get install -y \
     mariadb-client \
     jq
 
-ENV LOG_STDOUT **Boolean**
-ENV LOG_STDERR **Boolean**
-ENV LOG_LEVEL warn
-ENV ALLOW_OVERRIDE All
-ENV DATE_TIMEZONE UTC
-
 COPY run-lamp.sh /usr/sbin/
-RUN chmod +x /usr/sbin/run-lamp.sh
+RUN chmod a+x /usr/sbin/run-lamp.sh
+
 COPY apache.conf /etc/apache2/sites-available/000-default.conf
 RUN a2enmod rewrite
 
@@ -52,8 +55,6 @@ RUN rm -f /var/www/html/afterlogic.php
 COPY afterlogic.php /var/www/html/afterlogic.php
 RUN rm -rf /tmp/alwm
 
-VOLUME ["/var/www/html", "/var/log/httpd", "/var/lib/mysql", "/var/log/mysql", "/etc/apache2"]
-
-EXPOSE 80 3306
+EXPOSE 80
 
 CMD ["/usr/sbin/run-lamp.sh"]
