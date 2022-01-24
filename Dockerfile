@@ -15,6 +15,7 @@ RUN apt-get update
 RUN apt-get upgrade -y
 
 RUN apt-get install -y \
+    apt-utils \
     wget \
     zip \
     unzip \
@@ -35,7 +36,6 @@ RUN apt-get install -y \
 
 COPY run-lamp.sh /usr/sbin/
 RUN chmod a+x /usr/sbin/run-lamp.sh
-
 COPY apache.conf /etc/apache2/sites-available/000-default.conf
 RUN a2enmod rewrite
 
