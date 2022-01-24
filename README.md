@@ -1,7 +1,7 @@
 afterlogic/docker-webmail-lite
 ==============================
 
-**The volumes should be defined before using the folders in `Dockerfile`. That's why I forked the repo.**
+**No need to define volumes in `Dockerfile`.**
 
 Out-of-the-box [Afterlogic WebMail Lite](https://afterlogic.org/webmail-lite) image
 
